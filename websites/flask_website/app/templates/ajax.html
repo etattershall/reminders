@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Use an Ajax request to automatically query server for new data</h3>
+<ul>
+	<li><a href="http://code.runnable.com/UiPhLHanceFYAAAP/how-to-perform-ajax-in-flask-for-python">Flask Ajax code example on runnable</a></li>
+	<li><a href="http://stackoverflow.com/questions/15721679/update-and-render-a-value-from-flask-periodically">Using Ajax for simple queries (not flask specific)</a></li>
+	<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval">Automatically update using setInterval()</a></li>
+</ul>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+	var nIntervId;
+	function update_values() {
+	  nIntervId = setInterval(display_values, 1000);
+	}
+
+	function display_values() {
+				$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+				$.getJSON($SCRIPT_ROOT+"/_get_random",
+					function(data) {
+						$("#result").text(data.result)
+					});
+			}
+</script>
+<p id="result"></p>
+<script>
+update_values()
+</script>
+	  
+{% endblock %}
+

@@ -1,0 +1,8 @@
+body {
+  background: url("../img/flask-image.png") no-repeat top right;
+  background-size:  auto 125px;
+  margin: 100;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
